@@ -20,7 +20,7 @@ permissions:
 
 jobs:
   update:
-    if: github.repository == 'spantaleev/matrix-docker-ansible-deploy'
+    # if: github.repository == 'spantaleev/matrix-docker-ansible-deploy'
     name: Update translations
     runs-on: ubuntu-latest
     steps:
