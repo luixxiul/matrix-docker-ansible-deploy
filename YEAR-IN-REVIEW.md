@@ -1,3 +1,7 @@
+# 2024
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
 # 2023
 
 2023 was a year filled with many changes for matrix-docker-ansible-deploy. In this post, we're looking backward at some of the major changes that happened this year, as well as taking a glimpse of what's ahead in 2024.
