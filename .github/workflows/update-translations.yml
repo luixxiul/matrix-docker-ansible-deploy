@@ -1,0 +1,48 @@
+# SPDX-FileCopyrightText: 2024 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+name: Update translations
+
+on:  # yamllint disable-line rule:truthy
+  push: # test
+    # branches:
+    #  - master
+  # schedule:
+    # - cron: "0 6 * * 1,3,5" # Every Monday, Wednesday and Friday at 6am UTC
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    # if: github.repository == 'spantaleev/matrix-docker-ansible-deploy'
+    name: Update translations
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      # Setting up recommended prerequisites
+      # See: i18n/README.md
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5.1.0
+      - name: Set up just
+        uses: extractions/setup-just@v2
+
+      - name: Update translation catalog templates (POT) files
+        run: cd i18n/ && just extract-translation-templates
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7.0.5
+        with:
+            body: Automatic pull request by [create-pull-request](https://github.com/peter-evans/create-pull-request) to update translation files.
+            branch: create-pull-request/i18n
+            commit-message: Automatic translations update
+            delete-branch: true
+            title: Automatic translations update
