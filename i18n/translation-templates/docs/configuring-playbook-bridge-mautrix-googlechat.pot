@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: matrix-docker-ansible-deploy \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-27 09:54+0200\n"
+"POT-Creation-Date: 2025-03-01 03:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -110,4 +110,20 @@ msgstr ""
 
 #: ../../../docs/configuring-playbook-bridge-mautrix-googlechat.md:57
 msgid "After logging in, the bridge will create portal rooms for some recent chats. Portal rooms for other chats will be created as you receive messages."
+msgstr ""
+
+#: ../../../docs/configuring-playbook-bridge-mautrix-googlechat.md:59
+msgid "Troubleshooting"
+msgstr ""
+
+#: ../../../docs/configuring-playbook-bridge-mautrix-googlechat.md:61
+msgid "As with all other services, you can find the logs in [systemd-journald](https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html) by logging in to the server with SSH and running `journalctl -fu matrix-mautrix-googlechat`."
+msgstr ""
+
+#: ../../../docs/configuring-playbook-bridge-mautrix-googlechat.md:63
+msgid "Increase logging verbosity"
+msgstr ""
+
+#: ../../../docs/configuring-playbook-bridge-mautrix-googlechat.md:65
+msgid "The default logging level for this component is `WARNING`. If you want to increase the verbosity, add the following configuration to your `vars.yml` file and re-run the playbook:"
 msgstr ""

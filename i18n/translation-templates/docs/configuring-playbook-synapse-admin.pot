@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: matrix-docker-ansible-deploy \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-27 09:54+0200\n"
+"POT-Creation-Date: 2025-03-01 03:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,29 +93,53 @@ msgid "When setting, replace `example.com` with your own."
 msgstr ""
 
 #: ../../../docs/configuring-playbook-synapse-admin.md:49
-msgid "Installing"
+msgid "Extending the configuration"
 msgstr ""
 
 #: ../../../docs/configuring-playbook-synapse-admin.md:51
+msgid "There are some additional things you may wish to configure about the component."
+msgstr ""
+
+#: ../../../docs/configuring-playbook-synapse-admin.md:53
+msgid "Take a look at:"
+msgstr ""
+
+#: ../../../docs/configuring-playbook-synapse-admin.md:55
+msgid "`roles/custom/matrix-synapse-admin/defaults/main.yml` for some variables that you can customize via your `vars.yml` file. You can override settings (even those that don't have dedicated playbook variables) using the `matrix_synapse_admin_configuration_extension_json` variable"
+msgstr ""
+
+#: ../../../docs/configuring-playbook-synapse-admin.md:57
+msgid "Installing"
+msgstr ""
+
+#: ../../../docs/configuring-playbook-synapse-admin.md:59
 msgid "After configuring the playbook and potentially [adjusting your DNS records](#adjusting-dns-records), run the playbook with [playbook tags](playbook-tags.md) as below:"
 msgstr ""
 
-#: ../../../docs/configuring-playbook-synapse-admin.md:58
+#: ../../../docs/configuring-playbook-synapse-admin.md:66
 msgid "The shortcut commands with the [`just` program](just.md) are also available: `just install-all` or `just setup-all`"
 msgstr ""
 
-#: ../../../docs/configuring-playbook-synapse-admin.md:60
+#: ../../../docs/configuring-playbook-synapse-admin.md:68
 msgid "`just install-all` is useful for maintaining your setup quickly ([2x-5x faster](../CHANGELOG.md#2x-5x-performance-improvements-in-playbook-runtime) than `just setup-all`) when its components remain unchanged. If you adjust your `vars.yml` to remove other components, you'd need to run `just setup-all`, or these components will still remain installed. Note these shortcuts run the `ensure-matrix-users-created` tag too."
 msgstr ""
 
-#: ../../../docs/configuring-playbook-synapse-admin.md:62
+#: ../../../docs/configuring-playbook-synapse-admin.md:70
 msgid "Usage"
 msgstr ""
 
-#: ../../../docs/configuring-playbook-synapse-admin.md:64
+#: ../../../docs/configuring-playbook-synapse-admin.md:72
 msgid "After installation, Synapse Admin will be accessible at: `https://matrix.example.com/synapse-admin/`"
 msgstr ""
 
-#: ../../../docs/configuring-playbook-synapse-admin.md:66
+#: ../../../docs/configuring-playbook-synapse-admin.md:74
 msgid "To use Synapse Admin, you need to have [registered at least one administrator account](registering-users.md) on your server."
+msgstr ""
+
+#: ../../../docs/configuring-playbook-synapse-admin.md:76
+msgid "Troubleshooting"
+msgstr ""
+
+#: ../../../docs/configuring-playbook-synapse-admin.md:78
+msgid "As with all other services, you can find the logs in [systemd-journald](https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html) by logging in to the server with SSH and running `journalctl -fu matrix-synapse-admin`."
 msgstr ""

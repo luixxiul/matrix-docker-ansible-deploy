@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: matrix-docker-ansible-deploy \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-27 09:54+0200\n"
+"POT-Creation-Date: 2025-03-01 03:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -270,4 +270,8 @@ msgstr ""
 
 #: ../../../docs/configuring-playbook-synapse-s3-storage-provider.md:154
 msgid "So… you don't need to perform any maintenance yourself."
+msgstr ""
+
+#: ../../../docs/configuring-playbook-synapse-s3-storage-provider.md:156
+msgid "The schedule is defined in the format of systemd timer calendar. To edit the schedule, add the following configuration to your `vars.yml` file (adapt to your needs):"
 msgstr ""

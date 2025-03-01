@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: matrix-docker-ansible-deploy \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-27 09:54+0200\n"
+"POT-Creation-Date: 2025-03-01 03:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -175,4 +175,12 @@ msgstr ""
 
 #: ../../../docs/configuring-playbook-s3-goofys.md:120
 msgid "Put the [Backblaze B2 settings](configuring-playbook-s3.md#backblaze-b2) in your `vars.yml` file"
+msgstr ""
+
+#: ../../../docs/configuring-playbook-s3-goofys.md:128
+msgid "Troubleshooting"
+msgstr ""
+
+#: ../../../docs/configuring-playbook-s3-goofys.md:130
+msgid "As with all other services, you can find the logs in [systemd-journald](https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html) by logging in to the server with SSH and running `journalctl -fu matrix-goofys`."
 msgstr ""
