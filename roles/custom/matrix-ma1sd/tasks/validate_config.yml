@@ -1,3 +1,9 @@
+# SPDX-FileCopyrightText: 2020 Marcel Partap
+# SPDX-FileCopyrightText: 2020 - 2025 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2021 boris runakov
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 - name: (Deprecation) Warn about ma1sd variables that are not used anymore
@@ -68,6 +74,7 @@
     - {'old': 'matrix_ma1sd_default_port', 'new': 'matrix_ma1sd_container_port'}
     - {'old': 'matrix_ma1sd_container_labels_matrix_client_user_directory_search_path', 'new': 'matrix_ma1sd_container_labels_matrix_client_user_directory_search_path_regexp'}
     - {'old': 'matrix_ma1sd_container_labels_matrix_client_3pid_registration_path', 'new': 'matrix_ma1sd_container_labels_matrix_client_3pid_registration_path_regexp'}
+    - {'old': 'matrix_ma1sd_docker_image_name_prefix', 'new': 'matrix_ma1sd_docker_image_registry_prefix'}
 
 - name: (Deprecation) Catch and report mxisd variables
   ansible.builtin.fail:

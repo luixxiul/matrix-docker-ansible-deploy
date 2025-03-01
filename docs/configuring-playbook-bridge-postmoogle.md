@@ -1,6 +1,13 @@
-# Setting up Postmoogle email bridging (optional)
+<!--
+SPDX-FileCopyrightText: 2022 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 Nikita Chernyi
+SPDX-FileCopyrightText: 2023 Luke D Iremadze
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 
-**Note**: email bridging can also happen via the [email2matrix](configuring-playbook-email2matrix.md) bridge supported by the playbook.
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+# Setting up Postmoogle email bridging (optional)
 
 The playbook can install and configure [Postmoogle](https://github.com/etkecc/postmoogle) for you.
 
@@ -18,6 +25,19 @@ Open the following ports on your server to be able to receive incoming emails:
 If you don't open these ports, you will still be able to send emails, but not receive any.
 
 These port numbers are configurable via the `matrix_postmoogle_smtp_host_bind_port` and `matrix_postmoogle_submission_host_bind_port` variables, but other email servers will try to deliver on these default (standard) ports, so changing them is of little use.
+
+## Adjusting DNS records
+
+To make Postmoogle enable its email sending features, you need to configure MX and TXT (SPF, DMARC, and DKIM) records. See the table below for values which need to be specified.
+
+| Type | Host                           | Priority | Weight | Port | Target                             |
+|------|--------------------------------|----------|--------|------|------------------------------------|
+| MX   | `matrix`                       | 10       | 0      | -    | `matrix.example.com`               |
+| TXT  | `matrix`                       | -        | -      | -    | `v=spf1 ip4:matrix-server-IP -all` |
+| TXT  | `_dmarc.matrix`                | -        | -      | -    | `v=DMARC1; p=quarantine;`          |
+| TXT  | `postmoogle._domainkey.matrix` | -        | -      | -    | get it from `!pm dkim`             |
+
+**Note**: the DKIM record can be retrieved after configuring and installing the bridge's bot.
 
 ## Adjusting the playbook configuration
 
@@ -37,14 +57,18 @@ matrix_postmoogle_password: PASSWORD_FOR_THE_BOT
 # matrix_postmoogle_admins:
 #  - '@yourAdminAccount:{{ matrix_domain }}'
 #
-# .. unless you've made yourself an admin of all bots/bridges like this:
+# … unless you've made yourself an admin of all bots/bridges like this:
 #
 # matrix_admin: '@yourAdminAccount:{{ matrix_domain }}'
 ```
 
-## Adjusting DNS records
+### Extending the configuration
 
-You will also need to add several DNS records so that Postmoogle can send emails. See [Configuring DNS](configuring-dns.md) for details about DNS changes.
+There are some additional things you may wish to configure about the bridge.
+
+Take a look at:
+
+- `roles/custom/matrix-bridge-postmoogle/defaults/main.yml` for some variables that you can customize via your `vars.yml` file
 
 ## Installing
 
@@ -75,11 +99,13 @@ Send `!pm help` to the bot in the room to see the available commands.
 
 You can also refer to the upstream [documentation](https://github.com/etkecc/postmoogle).
 
-### Debug/Logs
+## Troubleshooting
 
-As with all other services, you can find their logs in [systemd-journald](https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html) by running something like `journalctl -fu matrix-postmoogle`
+As with all other services, you can find the logs in [systemd-journald](https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html) by logging in to the server with SSH and running `journalctl -fu matrix-postmoogle`.
 
-The default logging level for this bridge is `INFO`, but you can increase it to `DEBUG` with the following additional configuration:
+### Increase logging verbosity
+
+The default logging level for this component is `INFO`. If you want to increase the verbosity, add the following configuration to your `vars.yml` file and re-run the playbook:
 
 ```yaml
 matrix_postmoogle_loglevel: 'DEBUG'

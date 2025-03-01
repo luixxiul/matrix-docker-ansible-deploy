@@ -1,3 +1,15 @@
+<!--
+SPDX-FileCopyrightText: 2019 - 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2019 Lyubomir Popov
+SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 MDAD project contributors
+SPDX-FileCopyrightText: 2022 Dennis Ciba
+SPDX-FileCopyrightText: 2022 Marko Weltzer
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Updating users passwords
 
 ## Option 1 (if you are using the integrated Postgres database):
@@ -22,7 +34,7 @@ You can manually generate the password hash by using the command-line after **SS
 docker exec -it matrix-synapse /usr/local/bin/hash_password -c /data/homeserver.yaml
 ```
 
-and then connecting to the postgres server and executing:
+and then connecting to the Postgres server and executing:
 
 ```sql
 UPDATE users SET password_hash = '<password-hash>' WHERE name = '@alice:example.com';
@@ -43,5 +55,7 @@ If you didn't make your account a server admin when you created it, you can lear
 To set @alice:example.com's password to `correct_horse_battery_staple` you could use this curl command:
 
 ```sh
-curl -XPOST -d '{ "new_password": "correct_horse_battery_staple" }' "https://matrix.example.com/_matrix/client/r0/admin/reset_password/@alice:example.com?access_token=MDA...this_is_my_access_token
+curl -XPOST -d '{ "new_password": "correct_horse_battery_staple" }' "https://matrix.example.com/_matrix/client/r0/admin/reset_password/@alice:example.com?access_token=ACCESS_TOKEN_HERE
 ```
+
+Make sure to replace `ACCESS_TOKEN_HERE` with the access token of the server admin account.

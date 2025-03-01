@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2019 - 2025 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2022 MDAD project contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 - name: Fail if required appservice-irc settings not defined
@@ -37,3 +42,4 @@
   with_items:
     - {'old': 'matrix_appservice_irc_container_expose_client_server_api_port', 'new': '<superseded by matrix_appservice_irc_container_http_host_bind_port>'}
     - {'old': 'matrix_appservice_irc_container_self_build', 'new': 'matrix_appservice_irc_container_image_self_build'}
+    - {'old': 'matrix_appservice_irc_docker_image_name_prefix', 'new': 'matrix_appservice_irc_docker_image_registry_prefix'}

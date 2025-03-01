@@ -1,3 +1,12 @@
+<!--
+SPDX-FileCopyrightText: 2019 - 2022 Slavi Pantaleev
+SPDX-FileCopyrightText: 2019 - 2023 MDAD project contributors
+SPDX-FileCopyrightText: 2022 Jim Myhrberg
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Setting up Appservice Discord bridging (optional)
 
 **Note**: bridging to [Discord](https://discordapp.com/) can also happen via the [mx-puppet-discord](configuring-playbook-bridge-mx-puppet-discord.md) and [mautrix-discord](configuring-playbook-bridge-mautrix-discord.md) bridges supported by the playbook.
@@ -28,6 +37,15 @@ matrix_appservice_discord_bot_token: "YOUR DISCORD APP BOT TOKEN"
 #   use_appservice_legacy_authorization: true
 ```
 
+### Extending the configuration
+
+There are some additional things you may wish to configure about the bridge.
+
+Take a look at:
+
+- `roles/custom/matrix-bridge-appservice-discord/defaults/main.yml` for some variables that you can customize via your `vars.yml` file
+- `roles/custom/matrix-bridge-appservice-discord/templates/config.yaml.j2` for the bridge's default configuration. You can override settings (even those that don't have dedicated playbook variables) using the `matrix_appservice_discord_configuration_extension_yaml` variable
+
 ## Installing
 
 After configuring the playbook, run it with [playbook tags](playbook-tags.md) as below:
@@ -47,7 +65,7 @@ ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,ensure-matrix-use
 
 ## Self-Service Bridging (Manual)
 
-Self-service bridging allows you to bridge specific and existing Matrix rooms to specific Discord rooms. To enable it, add the following configuration to your `inventory/host_vars/matrix.example.com/vars.yml` file:
+Self-service bridging allows you to bridge specific and existing Matrix rooms to specific Discord rooms. To enable it, add the following configuration to your `vars.yml` file:
 
 ```yaml
 matrix_appservice_discord_bridge_enableSelfServiceBridging: true
@@ -73,7 +91,7 @@ Through portal bridging, Matrix rooms will automatically be created by the bot a
 
 All Matrix rooms created this way are **listed publicly** by default, and you will not have admin permissions to change this. To get more control, [make yourself a room Administrator](#getting-administrator-access-in-a-portal-bridged-room). You can then unlist the room from the directory and change the join rules.
 
-To disable portal bridging, add the following configuration to your `inventory/host_vars/matrix.example.com/vars.yml` file:
+To disable portal bridging, add the following configuration to your `vars.yml` file:
 
 ```yaml
 matrix_appservice_discord_bridge_disablePortalBridging: true
@@ -98,4 +116,19 @@ There's the Discord bridge's guide for [setting privileges on bridge managed roo
 ```sh
 docker exec -it matrix-appservice-discord \
 /bin/sh -c 'cp /cfg/registration.yaml /tmp/discord-registration.yaml && cd /tmp && node /build/tools/adminme.js -c /cfg/config.yaml -m "!qporfwt:example.com" -u "@alice:example.com" -p 100'
+```
+
+## Troubleshooting
+
+As with all other services, you can find the logs in [systemd-journald](https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html) by logging in to the server with SSH and running `journalctl -fu matrix-appservice-discord`.
+
+### Increase logging verbosity
+
+The default logging level for this component is `warn`. If you want to increase the verbosity, add the following configuration to your `vars.yml` file (adapt to your needs) and re-run the playbook:
+
+```yaml
+matrix_appservice_discord_configuration_extension_yaml: |
+  logging:
+    # What level should the logger output to the console at.
+    console: "info" # Valid values: silent, error, warn, http, info, verbose, silly
 ```

@@ -1,3 +1,11 @@
+<!--
+SPDX-FileCopyrightText: 2022 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 MDAD project contributors
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Setting up Honoroit (optional)
 
 The playbook can install and configure [Honoroit](https://github.com/etkecc/honoroit) for you.
@@ -5,6 +13,12 @@ The playbook can install and configure [Honoroit](https://github.com/etkecc/hono
 It's a bot you can use to setup **your own helpdesk on matrix**
 
 See the project's [documentation](https://github.com/etkecc/honoroit/blob/main/README.md) to learn what it does and why it might be useful to you.
+
+## Adjusting DNS records (optional)
+
+By default, this playbook installs Honoroit on the `matrix.` subdomain, at the `/honoroit` path (https://matrix.example.com/honoroit). This makes it easy to install it, because it **doesn't require additional DNS records to be set up**. If that's okay, you can skip this section.
+
+If you wish to adjust it, see the section [below](#adjusting-the-honoroit-url-optional) for details about DNS configuration.
 
 ## Adjusting the playbook configuration
 
@@ -23,13 +37,11 @@ matrix_bot_honoroit_password: PASSWORD_FOR_THE_BOT
 matrix_bot_honoroit_roomid: "!qporfwt:{{ matrix_domain }}"
 ```
 
-### Adjusting the Honoroit URL
-
-By default, this playbook installs Honoroit on the `matrix.` subdomain, at the `/honoroit` path (https://matrix.example.com/honoroit). This makes it easy to install it, because it **doesn't require additional DNS records to be set up**. If that's okay, you can skip this section.
+### Adjusting the Honoroit URL (optional)
 
 By tweaking the `matrix_bot_honoroit_hostname` and `matrix_bot_honoroit_path_prefix` variables, you can easily make the service available at a **different hostname and/or path** than the default one.
 
-Example additional configuration for your `inventory/host_vars/matrix.example.com/vars.yml` file:
+Example additional configuration for your `vars.yml` file:
 
 ```yaml
 # Change the default hostname and path prefix
@@ -37,13 +49,17 @@ matrix_bot_honoroit_hostname: honoroit.example.com
 matrix_bot_honoroit_path_prefix: /
 ```
 
-## Adjusting DNS records
+If you've changed the default hostname, you may need to create a CNAME record for the Honoroit domain (`honoroit.example.com`), which targets `matrix.example.com`.
 
-If you've changed the default hostname, **you may need to adjust your DNS** records to point the Honoroit domain to the Matrix server.
+When setting, replace `example.com` with your own.
 
-See [Configuring DNS](configuring-dns.md) for details about DNS changes.
+### Extending the configuration
 
-If you've decided to use the default hostname, you won't need to do any extra DNS configuration.
+There are some additional things you may wish to configure about the bot.
+
+Take a look at:
+
+- `roles/custom/matrix-bot-honoroit/defaults/main.yml` for some variables that you can customize via your `vars.yml` file
 
 ## Installing
 
@@ -73,3 +89,15 @@ After the bot joins the room, any Matrix user can send a message to it to start 
 Send `!ho help` to the bot in the room to see the available commands.
 
 You can also refer to the upstream [documentation](https://github.com/etkecc/honoroit#features).
+
+## Troubleshooting
+
+As with all other services, you can find the logs in [systemd-journald](https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html) by logging in to the server with SSH and running `journalctl -fu matrix-bot-honoroit`.
+
+### Increase logging verbosity
+
+If you want to increase the verbosity, add the following configuration to your `vars.yml` file and re-run the playbook:
+
+```yaml
+matrix_bot_honoroit_loglevel: 'DEBUG'
+```

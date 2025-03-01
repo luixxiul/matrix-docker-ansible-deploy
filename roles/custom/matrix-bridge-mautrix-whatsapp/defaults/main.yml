@@ -9,11 +9,13 @@ matrix_mautrix_whatsapp_container_image_self_build_repo: "https://mau.dev/mautri
 matrix_mautrix_whatsapp_container_image_self_build_branch: "{{ 'master' if matrix_mautrix_whatsapp_version == 'latest' else matrix_mautrix_whatsapp_version }}"
 
 # renovate: datasource=docker depName=dock.mau.dev/mautrix/whatsapp
-matrix_mautrix_whatsapp_version: v0.11.2
+matrix_mautrix_whatsapp_version: v0.11.3
 
 # See: https://mau.dev/mautrix/whatsapp/container_registry
-matrix_mautrix_whatsapp_docker_image: "{{ matrix_mautrix_whatsapp_docker_image_name_prefix }}mautrix/whatsapp:{{ matrix_mautrix_whatsapp_version }}"
-matrix_mautrix_whatsapp_docker_image_name_prefix: "{{ 'localhost/' if matrix_mautrix_whatsapp_container_image_self_build else 'dock.mau.dev/' }}"
+matrix_mautrix_whatsapp_docker_image: "{{ matrix_mautrix_whatsapp_docker_image_registry_prefix }}mautrix/whatsapp:{{ matrix_mautrix_whatsapp_version }}"
+matrix_mautrix_whatsapp_docker_image_registry_prefix: "{{ 'localhost/' if matrix_mautrix_whatsapp_container_image_self_build else matrix_mautrix_whatsapp_docker_image_registry_prefix_upstream }}"
+matrix_mautrix_whatsapp_docker_image_registry_prefix_upstream: "{{ matrix_mautrix_whatsapp_docker_image_registry_prefix_upstream_default }}"
+matrix_mautrix_whatsapp_docker_image_registry_prefix_upstream_default: "dock.mau.dev/"
 matrix_mautrix_whatsapp_docker_image_force_pull: "{{ matrix_mautrix_whatsapp_docker_image.endswith(':latest') }}"
 
 matrix_mautrix_whatsapp_base_path: "{{ matrix_base_data_path }}/mautrix-whatsapp"
@@ -82,7 +84,7 @@ matrix_mautrix_whatsapp_homeserver_token: ''
 matrix_mautrix_whatsapp_appservice_bot_username: whatsappbot
 
 # Minimum severity of journal log messages.
-# Options: debug, info, warn, error, fatal
+# Valid values: fatal, error, warn, info, debug, trace
 matrix_mautrix_whatsapp_logging_level: 'warn'
 
 # Whether or not created rooms should have federation enabled.

@@ -1,72 +1,27 @@
-# Setting up Mautrix Hangouts bridging (optional, deprecated)
+<!--
+SPDX-FileCopyrightText: 2019 Eduardo Beltrame
+SPDX-FileCopyrightText: 2019 - 2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2021 MDAD project contributors
+SPDX-FileCopyrightText: 2022 Dennis Ciba
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 
-💡 **Note**: This bridge has been deprecated in favor of [Google Chat bridge](https://github.com/mautrix/googlechat), which can be installed using [this playbook](configuring-playbook-bridge-mautrix-googlechat.md). Installing the mautrix-hangouts bridge is **no longer possible**. For now, this documentation page remains here for historical purposes.
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 
-The playbook can install and configure [mautrix-hangouts](https://github.com/mautrix/hangouts) for you.
+# Setting up Mautrix Hangouts bridging (optional, removed)
 
-See the project's [documentation](https://docs.mau.fi/bridges/python/hangouts/index.html) to learn what it does and why it might be useful to you.
+🪦 The playbook used to be able to install and configure [mautrix-hangouts](https://github.com/mautrix/hangouts), but no longer includes this component, because Google Hangouts has been discontinued since the 1st of November 2022.
 
-## Prerequisite (optional)
+You may wish to use the [Google Chat bridge](https://github.com/mautrix/googlechat) instead.
 
-If you want to set up [Double Puppeting](https://docs.mau.fi/bridges/general/double-puppeting.html) (hint: you most likely do) for this bridge automatically, you need to have enabled [Shared Secret Auth](configuring-playbook-shared-secret-auth.md) for this playbook.
+## Uninstalling the bridge manually
 
-For details about configuring Double Puppeting for this bridge, see the section below: [Set up Double Puppeting](#-set-up-double-puppeting)
+If you still have the Hangouts bridge installed on your Matrix server, the playbook can no longer help you uninstall it and you will need to do it manually. To uninstall manually, run these commands on the server:
 
-## Adjusting the playbook configuration
-
-To enable the [Google Hangouts](https://hangouts.google.com/) bridge, add the following configuration to your `inventory/host_vars/matrix.example.com/vars.yml` file:
-
-```yaml
-matrix_mautrix_hangouts_enabled: true
-```
-
-## Installing
-
-After configuring the playbook, run it with [playbook tags](playbook-tags.md) as below:
-
-<!-- NOTE: let this conservative command run (instead of install-all) to make it clear that failure of the command means something is clearly broken. -->
 ```sh
-ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,ensure-matrix-users-created,start
+systemctl disable --now matrix-mautrix-hangouts.service
+
+rm -rf /matrix/mautrix-hangouts
+
+/matrix/postgres/bin/cli-non-interactive 'DROP DATABASE matrix_mautrix_hangouts;'
 ```
-
-**Notes**:
-
-- The `ensure-matrix-users-created` playbook tag makes the playbook automatically create the bot's user account.
-
-- The shortcut commands with the [`just` program](just.md) are also available: `just install-all` or `just setup-all`
-
-  `just install-all` is useful for maintaining your setup quickly ([2x-5x faster](../CHANGELOG.md#2x-5x-performance-improvements-in-playbook-runtime) than `just setup-all`) when its components remain unchanged. If you adjust your `vars.yml` to remove other components, you'd need to run `just setup-all`, or these components will still remain installed.
-
-## Usage
-
-To use the bridge, you need to start a chat with `Hangouts bridge bot` with handle `@hangoutsbot:example.com` (where `example.com` is your base domain, not the `matrix.` domain).
-
-Send `login` to the bridge bot to receive a link to the portal from which you can enable the bridging. Open the link sent by the bot and follow the instructions.
-
-Automatic login may not work. If it does not, reload the page and select the "Manual login" checkbox before starting. Manual login involves logging into your Google account normally and then manually getting the OAuth token from browser cookies with developer tools.
-
-Once logged in, recent chats should show up as new conversations automatically. Other chats will get portals as you receive messages.
-
-You can learn more about authentication from the bridge's [official documentation on Authentication](https://docs.mau.fi/bridges/python/hangouts/authentication.html).
-
-### 💡 Set up Double Puppeting
-
-After successfully enabling bridging, you may wish to set up [Double Puppeting](https://docs.mau.fi/bridges/general/double-puppeting.html) (hint: you most likely do).
-
-To set it up, you have 2 ways of going about it.
-
-#### Method 1: automatically, by enabling Shared Secret Auth
-
-The bridge automatically performs Double Puppeting if [Shared Secret Auth](configuring-playbook-shared-secret-auth.md) service is configured and enabled on the server for this playbook.
-
-This is the recommended way of setting up Double Puppeting, as it's easier to accomplish, works for all your users automatically, and has less of a chance of breaking in the future.
-
-#### Method 2: manually, by asking each user to provide a working access token
-
-When using this method, **each user** that wishes to enable Double Puppeting needs to follow the following steps:
-
-- retrieve a Matrix access token for yourself. Refer to the documentation on [how to obtain one](obtaining-access-tokens.md).
-
-- send the access token to the bot. Example: `login-matrix MATRIX_ACCESS_TOKEN_HERE`
-
-- make sure you don't log out the `Mautrix-Hangouts` device some time in the future, as that would break the Double Puppeting feature

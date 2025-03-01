@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2020 - 2025 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2022 MDAD project contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 - name: Fail if required matrix-reminder-bot settings not defined
@@ -20,3 +25,4 @@
   when: "item.old in vars"
   with_items:
     - {'old': 'matrix_bot_matrix_reminder_bot_container_self_build', 'new': 'matrix_bot_matrix_reminder_bot_container_image_self_build'}
+    - {'old': 'matrix_bot_matrix_reminder_bot_container_image_name_prefix', 'new': 'matrix_bot_matrix_reminder_bot_container_image_registry_prefix'}

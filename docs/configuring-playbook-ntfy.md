@@ -6,7 +6,13 @@ Using the [UnifiedPush](https://unifiedpush.org) standard, ntfy enables self-hos
 
 This role is intended to support UnifiedPush notifications for use with the Matrix and Matrix-related services that this playbook installs. This role is not intended to support all of ntfy's other features.
 
-**Note**: In contrast to push notifications using Google's FCM or Apple's APNs, the use of UnifiedPush allows each end-user to choose the push notification server that they prefer.  As a consequence, deploying this ntfy server does not by itself ensure any particular user or device or client app will use it.
+**Note**: In contrast to push notifications using Google's FCM or Apple's APNs, the use of UnifiedPush allows each end-user to choose the push notification server that they prefer. As a consequence, deploying this ntfy server does not by itself ensure any particular user or device or client app will use it.
+
+## Adjusting DNS records
+
+By default, this playbook installs ntfy on the `ntfy.` subdomain (`ntfy.example.com`) and requires you to create a CNAME record for `ntfy`, which targets `matrix.example.com`.
+
+When setting, replace `example.com` with your own.
 
 ## Adjusting the playbook configuration
 
@@ -18,34 +24,30 @@ ntfy_enabled: true
 
 # Uncomment to enable the ntfy web app (disabled by default)
 # ntfy_web_root: app  # defaults to "disable"
-
-# Uncomment and change to inject additional configuration options.
-# ntfy_configuration_extension_yaml: |
-#   log_level: DEBUG
 ```
 
-For a more complete list of variables that you could override, see the [`defaults/main.yml` file](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy/blob/main/defaults/main.yml) of the ntfy Ansible role.
-
-For a complete list of ntfy config options that you could put in `ntfy_configuration_extension_yaml`, see the [ntfy config documentation](https://ntfy.sh/docs/config/#config-options).
-
-### Adjusting the ntfy URL
-
-By default, this playbook installs ntfy on the `ntfy.` subdomain (`ntfy.example.com`) and requires you to [adjust your DNS records](#adjusting-dns-records).
+### Adjusting the ntfy URL (optional)
 
 By tweaking the `ntfy_hostname` variable, you can easily make the service available at a **different hostname** than the default one.
 
-Example additional configuration for your `inventory/host_vars/matrix.example.com/vars.yml` file:
+Example additional configuration for your `vars.yml` file:
 
 ```yaml
 # Change the default hostname
 ntfy_hostname: push.example.com
 ```
 
-## Adjusting DNS records
+After changing the domain, **you may need to adjust your DNS** records to point the ntfy domain to the Matrix server.
 
-Once you've decided on the domain, **you may need to adjust your DNS** records to point the ntfy domain to the Matrix server.
+### Extending the configuration
 
-By default, you will need to create a CNAME record for `ntfy`. See [Configuring DNS](configuring-dns.md) for details about DNS changes.
+There are some additional things you may wish to configure about the component.
+
+Take a look at:
+
+- [ntfy role](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy)'s [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy/blob/main/defaults/main.yml) for some variables that you can customize via your `vars.yml` file. You can override settings (even those that don't have dedicated playbook variables) using the `ntfy_configuration_extension_yaml` variable
+
+For a complete list of ntfy config options that you could put in `ntfy_configuration_extension_yaml`, see the [ntfy config documentation](https://ntfy.sh/docs/config/#config-options).
 
 ## Installing
 
@@ -107,9 +109,9 @@ The web app is disabled in this playbook by default as the expectation is that m
 
 ## Troubleshooting
 
-First check that the Matrix client app you are using supports UnifiedPush. There may well be different variants of the app.
+### Check a client application
 
-Set the ntfy server's log level to 'DEBUG', as shown in the example settings above, and watch the server's logs with `sudo journalctl -fu matrix-ntfy`.
+First check that the Matrix client app you are using supports UnifiedPush. There may well be different variants of the app.
 
 To check if UnifiedPush is correctly configured on the client device, look at "Settings -> Notifications -> Notification Targets" in Element Android or SchildiChat Android, or "Settings -> Notifications -> Devices" in FluffyChat. There should be one entry for each Matrix client app that has enabled push notifications, and when that client is using UnifiedPush you should see a URL that begins with your ntfy server's URL.
 
@@ -118,3 +120,16 @@ In the "Notification Targets" screen in Element Android or SchildiChat Android, 
 If it is not working, useful tools are "Settings -> Notifications -> Re-register push distributor" and "Settings -> Notifications -> Troubleshoot Notifications" in SchildiChat Android (possibly also Element Android). In particular the "Endpoint/FCM" step of that troubleshooter should display your ntfy server's URL that it has discovered from the ntfy client app.
 
 The simple [UnifiedPush troubleshooting](https://unifiedpush.org/users/troubleshooting/) app [UP-Example](https://f-droid.org/en/packages/org.unifiedpush.example/) can be used to manually test UnifiedPush registration and operation on an Android device.
+
+### Check the service's logs
+
+As with all other services, you can find the logs in [systemd-journald](https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html) by logging in to the server with SSH and running `journalctl -fu matrix-ntfy`.
+
+#### Increase logging verbosity
+
+If you want to increase the verbosity, add the following configuration to your `vars.yml` file and re-run the playbook:
+
+```yaml
+ntfy_configuration_extension_yaml: |
+  log_level: DEBUG
+```

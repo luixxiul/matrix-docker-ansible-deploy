@@ -1,3 +1,9 @@
+# SPDX-FileCopyrightText: 2022 - 2025 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2022 Julian-Samuel Gebühr
+# SPDX-FileCopyrightText: 2022 MDAD project contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 - name: (Deprecation) Catch and report renamed maubot variables
@@ -10,6 +16,7 @@
     - {'old': 'matrix_bot_maubot_management_interface_port', 'new': 'matrix_bot_maubot_server_port'}
     - {'old': 'matrix_bot_maubot_management_interface_http_bind_port', 'new': 'matrix_bot_maubot_container_management_interface_http_bind_port'}
     - {'old': 'matrix_bot_maubot_registration_shared_secret', 'new': 'matrix_bot_maubot_homeserver_secret'}
+    - {'old': 'matrix_bot_maubot_container_image_name_prefix', 'new': 'matrix_bot_maubot_container_image_registry_prefix'}
 
 - name: Fail if required maubot settings not defined
   ansible.builtin.fail:

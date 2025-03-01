@@ -1,10 +1,20 @@
+<!--
+SPDX-FileCopyrightText: 2020 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 MDAD project contributors
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Setting up Matrix SMS bridging (optional)
 
 The playbook can install and configure [matrix-sms-bridge](https://github.com/benkuly/matrix-sms-bridge) for you.
 
 See the project's [documentation](https://github.com/benkuly/matrix-sms-bridge/blob/master/README.md) to learn what it does and why it might be useful to you.
 
-**The bridge uses [android-sms-gateway-server](https://github.com/RebekkaMa/android-sms-gateway-server). You need to configure it first.**
+## Prerequisite
+
+The bridge uses [android-sms-gateway-server](https://github.com/RebekkaMa/android-sms-gateway-server). You need to configure it first.
 
 ## Adjusting the playbook configuration
 
@@ -28,8 +38,15 @@ matrix_sms_bridge_provider_android_password: supeSecretPassword
 # (optional) if your android-sms-gateway-server uses a self signed vertificate, the bridge needs a "truststore". This can be the certificate itself.
 matrix_sms_bridge_provider_android_truststore_local_path: android-sms-gateway-server.p12
 matrix_sms_bridge_provider_android_truststore_password: 123
-
 ```
+
+### Extending the configuration
+
+There are some additional things you may wish to configure about the bridge.
+
+Take a look at:
+
+- `roles/custom/matrix-bridge-sms/defaults/main.yml` for some variables that you can customize via your `vars.yml` file. You can override settings (even those that don't have dedicated playbook variables) using the `matrix_sms_bridge_configuration_extension_yaml` variable
 
 ## Installing
 
@@ -51,3 +68,7 @@ ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,ensure-matrix-use
 ## Usage
 
 Read the [user guide](https://github.com/benkuly/matrix-sms-bridge/blob/master/README.md#user-guide) to see how this bridge works.
+
+## Troubleshooting
+
+As with all other services, you can find the logs in [systemd-journald](https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html) by logging in to the server with SSH and running `journalctl -fu matrix-sms-bridge`.

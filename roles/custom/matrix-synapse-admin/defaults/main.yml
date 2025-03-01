@@ -14,9 +14,11 @@ matrix_synapse_admin_container_image_self_build: false
 matrix_synapse_admin_container_image_self_build_repo: "https://github.com/etkecc/synapse-admin.git"
 
 # renovate: datasource=docker depName=ghcr.io/etkecc/synapse-admin
-matrix_synapse_admin_version: v0.10.3-etke35
-matrix_synapse_admin_docker_image: "{{ matrix_synapse_admin_docker_image_name_prefix }}etkecc/synapse-admin:{{ matrix_synapse_admin_version }}"
-matrix_synapse_admin_docker_image_name_prefix: "{{ 'localhost/' if matrix_synapse_admin_container_image_self_build else 'ghcr.io/' }}"
+matrix_synapse_admin_version: v0.10.3-etke37
+matrix_synapse_admin_docker_image: "{{ matrix_synapse_admin_docker_image_registry_prefix }}etkecc/synapse-admin:{{ matrix_synapse_admin_version }}"
+matrix_synapse_admin_docker_image_registry_prefix: "{{ 'localhost/' if matrix_synapse_admin_container_image_self_build else matrix_synapse_admin_docker_image_registry_prefix_upstream }}"
+matrix_synapse_admin_docker_image_registry_prefix_upstream: "{{ matrix_synapse_admin_docker_image_registry_prefix_upstream_default }}"
+matrix_synapse_admin_docker_image_registry_prefix_upstream_default: "ghcr.io/"
 matrix_synapse_admin_docker_image_force_pull: "{{ matrix_synapse_admin_docker_image.endswith(':latest') }}"
 
 # The base container network
@@ -49,6 +51,11 @@ matrix_synapse_admin_container_labels_traefik_priority: 0
 matrix_synapse_admin_container_labels_traefik_entrypoints: web-secure
 matrix_synapse_admin_container_labels_traefik_tls: "{{ matrix_synapse_admin_container_labels_traefik_entrypoints != 'web' }}"
 matrix_synapse_admin_container_labels_traefik_tls_certResolver: default  # noqa var-naming
+# This setting is to define a list ip addresses to allow access to synapse-admin.
+# Each IP address should be in CIDR format, e.g. xxx.xxx.xxx.xxx/xx.
+# For more information, see: https://doc.traefik.io/traefik/middlewares/http/ipallowlist/
+# If the list is empty, all IP addresses are allowed.
+matrix_synapse_admin_container_labels_traefik_ipallowlist_sourcerange: []
 
 # Controls which additional headers to attach to all HTTP responses.
 # To add your own headers, use `matrix_synapse_admin_container_labels_traefik_additional_response_headers_custom`

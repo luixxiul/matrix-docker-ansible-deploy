@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2022 Slavi Pantaleev
+SPDX-FileCopyrightText: 2024 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 ---
 name: Feature request
 about: Suggest an idea for this project
@@ -13,7 +20,9 @@ A clear and concise description of what the problem is. Ex. I'm always frustrate
 <!--
 NOTE: When submitting feature requests, be aware that:
 
-- This Ansible playbook installs tens of separate services. If you're having a problem with a specific service or you'd like some functionality added to it, it is likely that the problem is not with our deployment method, but with the service itself. You may wish to report that problem at the source, upstream, and not to us.
+- This Ansible playbook installs tens of separate services. If you're having a problem with a specific one, it is likely that the problem is with the service itself. You may wish to report that problem at the source, upstream.
+
+- This playbook intends to focus solely on Matrix and Matrix-related services. If your request is not specific to them, you may as well to consider to submit it to the mash-playbook project: https://github.com/mother-of-all-self-hosting/mash-playbook
 
 - This is a community project with no financial backing. The easiest way to get a feature into this project is to just develop it yourself.
 -->
