@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: matrix-docker-ansible-deploy \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-27 09:54+0200\n"
+"POT-Creation-Date: 2025-03-01 03:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,19 +16,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../../../docs/container-images.md:1
+#: ../../../docs/container-images.md:18
 msgid "Container images used by the playbook"
 msgstr ""
 
-#: ../../../docs/container-images.md:3
+#: ../../../docs/container-images.md:20
 msgid "This page summarizes the container ([Docker](https://www.docker.com/)) images used by the playbook when setting up your server."
 msgstr ""
 
-#: ../../../docs/container-images.md:5
+#: ../../../docs/container-images.md:22
 msgid "We try to stick to official images (provided by their respective projects) as much as possible."
 msgstr ""
 
-#: ../../../docs/container-images.md:7
+#: ../../../docs/container-images.md:24
 msgid "Homeserver"
 msgstr ""
 
@@ -104,11 +104,11 @@ msgstr ""
 msgid "Storing your data and managing your presence in the [Matrix](http://matrix.org/) network. Dendrite is a second-generation Matrix homeserver written in Go, an alternative to Synapse."
 msgstr ""
 
-#: ../../../docs/container-images.md:16
+#: ../../../docs/container-images.md:33
 msgid "Clients"
 msgstr ""
 
-#: ../../../docs/container-images.md:18
+#: ../../../docs/container-images.md:35
 msgid "Web clients for Matrix that you can host on your own domains."
 msgstr ""
 
@@ -160,11 +160,11 @@ msgstr ""
 msgid "Based on Element Web, with a more traditional instant messaging experience"
 msgstr ""
 
-#: ../../../docs/container-images.md:27
+#: ../../../docs/container-images.md:44
 msgid "Server Components"
 msgstr ""
 
-#: ../../../docs/container-images.md:29
+#: ../../../docs/container-images.md:46
 msgid "Services that run on the server to make the various parts of your installation work."
 msgstr ""
 
@@ -201,7 +201,7 @@ msgid "[Traefik](https://hub.docker.com/_/traefik/)"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "Web server, listening on ports 80, 443 and 8448 — standing in front of all the other services. Using your own webserver [is possible](configuring-playbook-own-webserver.md)"
+msgid "Web server, listening on ports 80, 443 and 8448 — standing in front of all the other services. [Using your own webserver](configuring-playbook-own-webserver.md) is also possible."
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -213,7 +213,7 @@ msgid "[certbot/certbot](https://hub.docker.com/r/certbot/certbot/)"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "The [certbot](https://certbot.eff.org/) tool for obtaining SSL certificates from [Let's Encrypt](https://letsencrypt.org/)"
+msgid "[Certbot](https://certbot.eff.org/) tool for obtaining SSL certificates from [Let's Encrypt](https://letsencrypt.org/)"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -252,11 +252,11 @@ msgstr ""
 msgid "Update dynamic DNS entries for accounts on Dynamic DNS Network Service Provider"
 msgstr ""
 
-#: ../../../docs/container-images.md:41
+#: ../../../docs/container-images.md:58
 msgid "Authentication"
 msgstr ""
 
-#: ../../../docs/container-images.md:43
+#: ../../../docs/container-images.md:60
 msgid "Extend and modify how users are authenticated on your homeserver."
 msgstr ""
 
@@ -297,7 +297,7 @@ msgid "[activism.international/matrix_ldap_registration_proxy](https://gitlab.co
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "A proxy that handles Matrix registration requests and forwards them to LDAP."
+msgid "Proxy that handles Matrix registration requests and forwards them to LDAP"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -309,7 +309,7 @@ msgid "[zeratax/matrix-registration](https://hub.docker.com/r/devture/zeratax-ma
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "A simple python application to have a token based Matrix registration"
+msgid "Simple python application to have a token based Matrix registration"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -329,14 +329,14 @@ msgid "[synapse-simple-antispam](configuring-playbook-synapse-simple-antispam.md
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "A spam checker module"
+msgid "Spam checker module"
 msgstr ""
 
-#: ../../../docs/container-images.md:55
+#: ../../../docs/container-images.md:72
 msgid "File Storage"
 msgstr ""
 
-#: ../../../docs/container-images.md:57
+#: ../../../docs/container-images.md:74
 msgid "Use alternative file storage to the default `media_store` folder."
 msgstr ""
 
@@ -365,14 +365,14 @@ msgid "[t2bot/matrix-media-repo](https://ghcr.io/t2bot/matrix-media-repo)"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "matrix-media-repo is a highly customizable multi-domain media repository for Matrix. Intended for medium to large deployments, this media repo de-duplicates media while being fully compliant with the specification."
+msgid "Highly customizable multi-domain media repository for Matrix. Intended for medium to large deployments, this media repo de-duplicates media while being fully compliant with the specification."
 msgstr ""
 
-#: ../../../docs/container-images.md:65
+#: ../../../docs/container-images.md:82
 msgid "Bridges"
 msgstr ""
 
-#: ../../../docs/container-images.md:67
+#: ../../../docs/container-images.md:84
 msgid "Bridges can be used to connect your Matrix installation with third-party communication networks."
 msgstr ""
 
@@ -692,11 +692,11 @@ msgstr ""
 msgid "Email to Matrix bridge"
 msgstr ""
 
-#: ../../../docs/container-images.md:99
+#: ../../../docs/container-images.md:116
 msgid "Bots"
 msgstr ""
 
-#: ../../../docs/container-images.md:101
+#: ../../../docs/container-images.md:118
 msgid "Bots provide various additional functionality to your installation."
 msgstr ""
 
@@ -709,7 +709,7 @@ msgid "[etke.cc/baibot](https://ghcr.io/etkecc/baibot)"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "A bot that exposes the power of [AI](https://en.wikipedia.org/wiki/Artificial_intelligence) / [Large Language Models](https://en.wikipedia.org/wiki/Large_language_model) to you"
+msgid "Bot that exposes the power of [AI](https://en.wikipedia.org/wiki/Artificial_intelligence) / [Large Language Models](https://en.wikipedia.org/wiki/Large_language_model) to you"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -745,7 +745,7 @@ msgid "[dock.mau.dev/maubot/maubot](https://mau.dev/maubot/maubot/container_regi
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "A plugin-based Matrix bot system"
+msgid "Plugin-based Matrix bot system"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -757,7 +757,7 @@ msgid "[etke.cc/honoroit](https://github.com/etkecc/honoroit/container_registry)
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "A helpdesk bot"
+msgid "Helpdesk bot"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -769,7 +769,7 @@ msgid "[matrixdotorg/mjolnir](https://hub.docker.com/r/matrixdotorg/mjolnir)"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "A moderation tool for Matrix"
+msgid "Moderation tool for Matrix"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -781,7 +781,7 @@ msgid "[gnuxie/draupnir](https://hub.docker.com/r/gnuxie/draupnir)"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "A moderation tool for Matrix (Fork of Mjolnir)"
+msgid "Moderation tool for Matrix (Fork of Mjolnir)"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -796,11 +796,11 @@ msgstr ""
 msgid "Web forms (HTTP POST) to Matrix"
 msgstr ""
 
-#: ../../../docs/container-images.md:114
+#: ../../../docs/container-images.md:131
 msgid "Administration"
 msgstr ""
 
-#: ../../../docs/container-images.md:116
+#: ../../../docs/container-images.md:133
 msgid "Services that help you in administrating and monitoring your Matrix installation."
 msgstr ""
 
@@ -837,7 +837,7 @@ msgid "[etke.cc/synapse-admin](https://ghcr.io/etkecc/synapse-admin)"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "A web UI tool for administrating users and rooms on your Matrix server"
+msgid "Web UI tool for administrating users and rooms on your Matrix server"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -869,7 +869,7 @@ msgid "Graphing tool that works well with the above two images. Our playbook als
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "[Metrics and Graphs](configuring-playbook-prometheus-nginxlog.md)"
+msgid "[Metrics and Graphs](configuring-playbook-prometheus-grafana.md#enable-metrics-and-graphs-for-nginx-logs-optional)"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -886,6 +886,18 @@ msgstr ""
 
 #: ../../../docs/container-images.md:0
 msgid "Backups"
+msgstr ""
+
+#: ../../../docs/container-images.md:0
+msgid "[postgres-backup-local](configuring-playbook-postgres-backup.md)"
+msgstr ""
+
+#: ../../../docs/container-images.md:0
+msgid "[prodrigestivill/postgres-backup-local](https://hub.docker.com/r/prodrigestivill/postgres-backup-local)"
+msgstr ""
+
+#: ../../../docs/container-images.md:0
+msgid "Create automatic database backups"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -908,11 +920,11 @@ msgstr ""
 msgid "Export the usage statistics of a Synapse homeserver to be scraped by Prometheus."
 msgstr ""
 
-#: ../../../docs/container-images.md:131
+#: ../../../docs/container-images.md:149
 msgid "Misc"
 msgstr ""
 
-#: ../../../docs/container-images.md:133
+#: ../../../docs/container-images.md:151
 msgid "Various services that don't fit any other categories."
 msgstr ""
 
@@ -933,7 +945,7 @@ msgid "[synapse_auto_accept_invite](configuring-playbook-synapse-auto-accept-inv
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "A Synapse module to automatically accept invites."
+msgid "Synapse module to automatically accept invites"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -945,7 +957,7 @@ msgid "[etke.cc/rust-synapse-compress-state](https://gitlab.com/etke.cc/rust-syn
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "A cli tool that automatically compresses `state_groups` database table in background."
+msgid "Cli tool that automatically compresses `state_groups` database table in background"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -969,7 +981,7 @@ msgid "[etherpad/etherpad](https://hub.docker.com/r/etherpad/etherpad/)"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "An open source collaborative text editor"
+msgid "Open source collaborative text editor"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -981,7 +993,7 @@ msgid "[jitsi/web](https://hub.docker.com/r/jitsi/web)"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "the [Jitsi](https://jitsi.org/) web UI"
+msgid "[Jitsi](https://jitsi.org/) web UI"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -989,7 +1001,7 @@ msgid "[jitsi/jicofo](https://hub.docker.com/r/jitsi/jicofo)"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "the [Jitsi](https://jitsi.org/) Focus component"
+msgid "[Jitsi](https://jitsi.org/) Focus component"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -997,7 +1009,7 @@ msgid "[jitsi/prosody](https://hub.docker.com/r/jitsi/prosody)"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "the [Jitsi](https://jitsi.org/) Prosody XMPP server component"
+msgid "[Jitsi](https://jitsi.org/) Prosody XMPP server component"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -1005,7 +1017,7 @@ msgid "[jitsi/jvb](https://hub.docker.com/r/jitsi/jvb)"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "the [Jitsi](https://jitsi.org/) Video Bridge component"
+msgid "[Jitsi](https://jitsi.org/) Video Bridge component"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -1017,7 +1029,7 @@ msgid "[cactuscomments/cactus-appservice](https://hub.docker.com/r/cactuscomment
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "A federated comment system built on Matrix"
+msgid "Federated comment system built on Matrix"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -1033,7 +1045,7 @@ msgid "[matrixdotorg/pantalaimon](https://hub.docker.com/r/matrixdotorg/pantalai
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "An E2EE aware proxy daemon"
+msgid "E2EE aware proxy daemon"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -1060,11 +1072,11 @@ msgstr ""
 msgid "Self-hosted, UnifiedPush-compatible push notifications server"
 msgstr ""
 
-#: ../../../docs/container-images.md:152
+#: ../../../docs/container-images.md:170
 msgid "Container images of deprecated / unmaintained services"
 msgstr ""
 
-#: ../../../docs/container-images.md:154
+#: ../../../docs/container-images.md:172
 msgid "The list of the deprecated or unmaintained services is available [here](configuring-playbook.md#deprecated--unmaintained--removed-services)."
 msgstr ""
 
@@ -1089,7 +1101,7 @@ msgid "[turt2live/matrix-dimension](https://hub.docker.com/r/turt2live/matrix-di
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "An open source integration manager for Matrix clients"
+msgid "Open source integration manager for Matrix clients"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -1113,7 +1125,7 @@ msgid "[matrixdotorg/go-neb](https://hub.docker.com/r/matrixdotorg/go-neb)"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
-msgid "A multi functional bot written in Go"
+msgid "Multi functional bot written in Go"
 msgstr ""
 
 #: ../../../docs/container-images.md:0
@@ -1138,18 +1150,6 @@ msgstr ""
 
 #: ../../../docs/container-images.md:0
 msgid "Bridge to [Facebook](https://facebook.com/)"
-msgstr ""
-
-#: ../../../docs/container-images.md:0
-msgid "[mautrix-hangouts](configuring-playbook-bridge-mautrix-hangouts.md)"
-msgstr ""
-
-#: ../../../docs/container-images.md:0
-msgid "[mautrix/hangouts](https://mau.dev/mautrix/hangouts/container_registry)"
-msgstr ""
-
-#: ../../../docs/container-images.md:0
-msgid "Bridge to [Google Hangouts](https://en.wikipedia.org/wiki/Google_Hangouts)"
 msgstr ""
 
 #: ../../../docs/container-images.md:0

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: matrix-docker-ansible-deploy \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-27 09:54+0200\n"
+"POT-Creation-Date: 2025-03-01 03:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -174,4 +174,20 @@ msgstr ""
 
 #: ../../../docs/configuring-playbook-bridge-mautrix-meta-messenger.md:86
 msgid "**Note**: given that the bot is configured in `messenger` [bridge mode](#bridge-mode) by default, you will need to log in to [messenger.com](https://messenger.com/) (not `facebook.com`!) and obtain the cookies from there."
+msgstr ""
+
+#: ../../../docs/configuring-playbook-bridge-mautrix-meta-messenger.md:88
+msgid "Troubleshooting"
+msgstr ""
+
+#: ../../../docs/configuring-playbook-bridge-mautrix-meta-messenger.md:90
+msgid "As with all other services, you can find the logs in [systemd-journald](https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html) by logging in to the server with SSH and running `journalctl -fu matrix-mautrix-meta-messenger`."
+msgstr ""
+
+#: ../../../docs/configuring-playbook-bridge-mautrix-meta-messenger.md:92
+msgid "Increase logging verbosity"
+msgstr ""
+
+#: ../../../docs/configuring-playbook-bridge-mautrix-meta-messenger.md:94
+msgid "The default logging level for this component is `warn`. If you want to increase the verbosity, add the following configuration to your `vars.yml` file and re-run the playbook:"
 msgstr ""

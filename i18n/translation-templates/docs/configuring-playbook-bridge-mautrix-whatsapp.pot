@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: matrix-docker-ansible-deploy \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-27 09:54+0200\n"
+"POT-Creation-Date: 2025-03-01 03:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,4 +114,20 @@ msgstr ""
 
 #: ../../../docs/configuring-playbook-bridge-mautrix-whatsapp.md:58
 msgid "**Note**: your linked devices will be logged out if you don’t use your phone for over 14 days (see the official FAQ entry [here](https://faq.whatsapp.com/general/download-and-installation/about-linked-devices)). The bridge will warn you if it doesn't receive any data from the phone over 12 days."
+msgstr ""
+
+#: ../../../docs/configuring-playbook-bridge-mautrix-whatsapp.md:60
+msgid "Troubleshooting"
+msgstr ""
+
+#: ../../../docs/configuring-playbook-bridge-mautrix-whatsapp.md:62
+msgid "As with all other services, you can find the logs in [systemd-journald](https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html) by logging in to the server with SSH and running `journalctl -fu matrix-mautrix-whatsapp`."
+msgstr ""
+
+#: ../../../docs/configuring-playbook-bridge-mautrix-whatsapp.md:64
+msgid "Increase logging verbosity"
+msgstr ""
+
+#: ../../../docs/configuring-playbook-bridge-mautrix-whatsapp.md:66
+msgid "The default logging level for this component is `warn`. If you want to increase the verbosity, add the following configuration to your `vars.yml` file and re-run the playbook:"
 msgstr ""
