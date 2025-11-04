@@ -1,5 +1,13 @@
 # 2025-11-04
 
+## The MX Puppet Twitter bridge has been removed from the playbook
+
+The [mx-puppet-twitter](./docs/configuring-playbook-bridge-mx-puppet-twitter.md) bridge has been removed from the playbook, as it has been unmaintained for a long time more than several years.
+
+The playbook will let you know if you're using any `matrix_mx_puppet_twitter_*` variables. You'll need to remove them from `vars.yml` and potentially [uninstall the bridge manually](./docs/configuring-playbook-bridge-mx-puppet-twitter.md#uninstalling-the-bridge-manually).
+
+# 2025-11-04
+
 ## The Go Skype bridge has been removed from the playbook
 
 The [go-skype-bridge](./docs/configuring-playbook-bridge-go-skype-bridge.md) has been removed from the playbook, as Skype has been discontinued since the May 2025.
