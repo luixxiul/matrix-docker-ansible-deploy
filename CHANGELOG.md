@@ -1,3 +1,12 @@
+# 2026-07-26
+
+## LinkedIn bridging
+
+The playbook can now bridge [LinkedIn](https://www.linkedin.com/) messaging via the [mautrix-linkedin](https://github.com/mautrix/linkedin) bridge. Messages flow both ways and portal rooms build themselves for your recent conversations, so your recruiter spam finally lands in Matrix.
+
+LinkedIn has no usable public messaging API, so login is gloriously undignified: you sign in through a browser, dig a `graphql` request out of devtools, copy it as cURL, and paste that wall of text to the bot. **The catch that will bite you:** LinkedIn pins the session to the exact browser that grabbed it. Pull the request in Chrome (the bridge presents as Chrome on Linux) and you are fine; do it in Firefox and the login dies without a word, no error, just silence and a bot that ignores you. See [Setting up Mautrix LinkedIn bridging](./docs/configuring-playbook-bridge-mautrix-linkedin.md) to get started.
+
+
 # 2026-07-19
 
 ## Tuwunel now exposes its administration and /_tuwunel API paths
